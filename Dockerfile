@@ -29,7 +29,8 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 COPY tools /opt/tools
 ENV PATH ${PATH}:/opt/tools
 
-RUN chown -R root:root /opt/tools
+RUN chown -R root:root /opt/tools \
+   && chmod +x /opt/tools/android-accept-licenses.sh
 
 # Install Android platform and things
 
