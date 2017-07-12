@@ -29,11 +29,13 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 COPY tools /opt/tools
 ENV PATH ${PATH}:/opt/tools
 
+RUN chown -R root:root /opt/tools
+
 # Install Android platform and things
 
 ENV ANDROID_PLATFORM_VERSION 25
 ENV ANDROID_BUILD_TOOLS_VERSION 25.0.2
-ENV ANDROID_EXTRA_PACKAGES build-tools-26.0.2,build-tools-26.0.1,build-tools-26.0.0
+ENV ANDROID_EXTRA_PACKAGES build-tools-25.0.2,build-tools-25.0.1,build-tools-25.0.0
 ENV ANDROID_REPOSITORIES extra-android-m2repository,extra-android-support,extra-google-m2repository
 
 RUN /opt/tools/android-accept-licenses.sh "android update sdk --no-ui --all --filter platform-tools,build-tools-$ANDROID_BUILD_TOOLS_VERSION,android-$ANDROID_PLATFORM_VERSION,$ANDROID_EXTRA_PACKAGES,$ANDROID_REPOSITORIES"
