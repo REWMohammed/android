@@ -1,6 +1,10 @@
+# Some code is copied from: https://hub.docker.com/r/ekreative/android
+
 FROM ubuntu:xenial
 
 MAINTAINER Mohammed Alamri "rewmohammed@realestatewebmasters.com"
+
+# Install required packages
 
 RUN dpkg --add-architecture i386 \
     && apt-get update \
@@ -13,7 +17,7 @@ RUN dpkg --add-architecture i386 \
     && apt-get install -y oracle-java8-installer nodejs \
     && apt-get autoclean
 
-# Install the SDK
+# Install Android full sdk
 
 ENV ANDROID_SDK_URL https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
 
@@ -25,6 +29,8 @@ RUN cd /opt \
 
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+
+# Copy github repo tools folder to /opt/tools
 
 COPY tools /opt/tools
 ENV PATH ${PATH}:/opt/tools
@@ -57,4 +63,13 @@ ENV ANDROID_NDK_HOME /opt/android-ndk
 
 RUN npm install -g xcode-build-tools@4.4.2
 
+
 ENV ANDROID_BIN ${ANDROID_HOME}/tools/bin/
+
+# Copy previously accepted licenses on local machine
+
+RUN mkdir /opt/licenses
+COPY licenses /opt/licenses
+ENV ANDROID_LICENSES /opt/licenses
+
+RUN chown -R root:root /opt/licenses
