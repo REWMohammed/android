@@ -68,8 +68,8 @@ ENV ANDROID_BIN ${ANDROID_HOME}/tools/bin/
 
 # Copy previously accepted licenses on local machine
 
-RUN mkdir /opt/licenses
-COPY licenses /opt/licenses
-ENV ANDROID_LICENSES /opt/licenses
+RUN mkdir ${ANDROID_HOME}/licenses
+COPY licenses ${ANDROID_HOME}/licenses
+ENV ANDROID_LICENSES ${ANDROID_HOME}/licenses
 
-RUN chown -R root:root /opt/licenses
+RUN chown -R root:root ${ANDROID_HOME}/licenses
