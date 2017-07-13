@@ -41,6 +41,17 @@ ENV ANDROID_REPOSITORIES extra-android-m2repository,extra-android-support,extra-
 
 RUN /opt/tools/android-accept-licenses.sh "android update sdk --no-ui --all --filter platform-tools,build-tools-$ANDROID_BUILD_TOOLS_VERSION,android-$ANDROID_PLATFORM_VERSION,$ANDROID_EXTRA_PACKAGES,$ANDROID_REPOSITORIES"
 
+# Install NDK
+
+ENV ANDROID_NDK_URL https://dl.google.com/android/repository/android-ndk-r13b-linux-x86_64.zip
+
+RUN cd /opt \
+    && wget --output-document=android-ndk.zip --quiet $ANDROID_NDK_URL \
+    && unzip -q android-ndk.zip \
+    && rm -f android-ndk.zip \
+    && mv android-ndk-r13b android-ndk
+    
+ENV ANDROID_NDK_HOME /opt/android-ndk
 
 # Install upload-apk helper
 
