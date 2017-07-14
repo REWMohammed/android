@@ -38,6 +38,16 @@ ENV PATH ${PATH}:/opt/tools
 RUN chown -R root:root /opt/tools \
    && chmod +x /opt/tools/android-accept-licenses.sh
 
+# Copy github repo emulator folder to ${ANDROID_HOME}
+
+COPY emulator ${ANDROID_HOME}/emulator
+ENV PATH ${PATH}:${ANDROID_HOME}/emulator
+
+RUN chown -R root:root ${ANDROID_HOME}/emulator \
+   && cd ${ANDROID_HOME}/emulator/qemu/linux-x86_64/ \
+   && unzip qemu-system-x86_64.zip \
+   && rm -f qemu-system-x86_64.zip
+
 # Install Android platform and things
 
 ENV ANDROID_PLATFORM_VERSION 25
