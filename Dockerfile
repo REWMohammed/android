@@ -17,7 +17,7 @@ RUN dpkg --add-architecture i386 \
 
 
 # Install android sdk
-RUN wget -qO- http://dl.google.com/android/android-sdk_r23-linux.tgz | \
+RUN wget -qO- http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz | \
     tar xvz -C /usr/local/ && \
     mv /usr/local/android-sdk-linux /usr/local/android-sdk && \
     chown -R root:root /usr/local/android-sdk/
@@ -30,7 +30,7 @@ ENV PATH $PATH:$ANDROID_HOME/platform-tools
 
 # Install latest android tools and system images
 RUN ( sleep 4 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --force -a --filter \
-    platform-tool,android-19,android-21,android-22,build-tools-22.0.1,sys-img-x86-android-19,sys-img-x86-android-21,sys-img-x86-android-22,sys-img-armeabi-v7a-android-19,sys-img-armeabi-v7a-android-21,sys-img-armeabi-v7a-android-22 && \
+    platform-tool,android-19,android-21,android-25,build-tools-25.0.2,sys-img-x86-android-19,sys-img-x86-android-21,sys-img-x86-android-25,sys-img-armeabi-v7a-android-19,sys-img-armeabi-v7a-android-21,sys-img-armeabi-v7a-android-25 && \
     echo "y" | android update adb
 
 
