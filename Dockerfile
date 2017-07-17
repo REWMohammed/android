@@ -13,7 +13,6 @@ RUN dpkg --add-architecture i386 \
     && apt-get update \
     && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections \
     && apt-get install -y oracle-java8-installer nodejs \
-    && apt-get -y install qemu-kvm \
     && apt-get autoclean
 
 
@@ -31,7 +30,7 @@ ENV PATH $PATH:$ANDROID_HOME/platform-tools
 
 # Install latest android tools and system images
 RUN ( sleep 4 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --force -a --filter \
-    platform-tool,android-19,android-21,android-22,build-tools-22.0.2,sys-img-x86-android-19,sys-img-x86-android-21,sys-img-x86-android-22,sys-img-armeabi-v7a-android-19,sys-img-armeabi-v7a-android-21,sys-img-armeabi-v7a-android-22 && \
+    platform-tool,android-22,build-tools-22.0.2,sys-img-x86_64-android-22,sys-img-armeabi-v7a-android-22 && \
     echo "y" | android update adb
 
 
