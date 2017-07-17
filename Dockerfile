@@ -47,3 +47,11 @@ RUN chown -R root:root ${ANDROID_HOME}/emulator \
 # Create fake keymap file
 RUN mkdir /usr/local/android-sdk/tools/keymaps && \
     touch /usr/local/android-sdk/tools/keymaps/en-us
+
+# Copy previously accepted licenses on local machine 
+ 
+RUN mkdir ${ANDROID_HOME}/licenses 
+COPY licenses ${ANDROID_HOME}/licenses 
+ENV ANDROID_LICENSES ${ANDROID_HOME}/licenses 
+ 
+RUN chown -R root:root ${ANDROID_HOME}/licenses 
