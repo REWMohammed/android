@@ -4,6 +4,8 @@ FROM ubuntu
 
 MAINTAINER Mohammed Alamri "rewmohammed@realestatewebmasters.com"
 
+ENV DOCKER_HOST=tcp://localhost:2375
+
 # Install required packages
 RUN dpkg --add-architecture i386 \
     && apt-get update \
