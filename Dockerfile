@@ -49,4 +49,4 @@ COPY licenses ${ANDROID_HOME}/licenses
 ENV ANDROID_LICENSES ${ANDROID_HOME}/licenses 
 RUN chown -R root:root ${ANDROID_HOME}/licenses 
 
-RUN apt-get -y remove wget curl git bzip2 unzip cmake && apt-get autoclean && apt-get -y autoremove 
+RUN apt-get -y remove wget curl git bzip2 unzip cmake
